@@ -16,7 +16,7 @@ namespace Chemia_dla_opornych
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new table1());
+            Application.Run(new plansza());
         }
     }
 }
