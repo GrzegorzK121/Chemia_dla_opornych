@@ -25,5 +25,9 @@ namespace Chemia_dla_opornych
             jestwZasiegu = false;
         }
 
+        public void Method()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

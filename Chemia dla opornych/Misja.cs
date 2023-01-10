@@ -10,18 +10,21 @@ namespace Chemia_dla_opornych
     internal class Misja
     {
         public String opisMisji;
-        public String napisKońcowy;
+        public String opisSkrocony;
         public int punkty;
         public Stolik[] stoliki;
         public bool[] maZebrac;
+        public bool koniec = false;
+        public int minPunkty;
 
-        public Misja(String om, String nk, int p, Stolik[] s, bool[] mz)
+        public Misja(String om, String os, int p, Stolik[] s, bool[] mz)
         {
             opisMisji = om;
-            napisKońcowy = nk;
+            opisSkrocony = os;
             punkty = p;
             stoliki = s;    
             maZebrac = mz;
+            minPunkty = p/2;
         }
 
         public void zacznijMisje()

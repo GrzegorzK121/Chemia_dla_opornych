@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,7 +49,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,6 +70,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Installer1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Installer1.Designer.cs">
+      <DependentUpon>Installer1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misja.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +93,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include=".editorconfig" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -84,28 +109,91 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\down.png" />
+    <None Include="Resources\green.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\left.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\free.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\red.png" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\blue.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\green.png" />
+    <None Include="Resources\blueChoose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\elipseBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\elipseBlueChoose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\elipseGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\elipseGreenChoose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\elipsePurple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\elipsePurpleChoose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redChoose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lot.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cooo.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alleluja.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pling.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plop-plop.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pung.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\puup.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lab.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

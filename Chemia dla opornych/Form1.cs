@@ -7,23 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Media;
 
 namespace Chemia_dla_opornych
 {
     public partial class plansza : Form
     {
 
-        bool goLeft, goRight, goUp, goDown, gameOver;
-        string facing = "up";
-        int speed = 10;
+        bool goLeft, goRight, goUp, goDown;
+        int speed = 7;
+        int czas = 0;
 
         Misja[] misje;
 
-        //Gra
+        bool moznaChodzic = false;
         int numerMisji = 0;
         int punkty = 0;
+        int liczbaMisji;
         Misja obecnaMisja;
         Stolik[] stoliki;
+        
 
         public plansza()
         {
@@ -32,79 +36,209 @@ namespace Chemia_dla_opornych
             misje = new Misja[] {
                 new Misja(
                     "Zbierz składniki do zrobienia wody, wzór H2O",
-                    "Brawo, woda zrobiona, dostajesz 100 punktów",
+                    "Woda, wzór H2O",
                     100,
                     new Stolik[] {
-                    new Stolik(table1, new Fiolka("Węgiel",
-                        Properties.Resources.blue, Properties.Resources.green, Properties.Resources.free)),
-                    new Stolik(table2, new Fiolka("Tlen",
-                        Properties.Resources.green, Properties.Resources.red, Properties.Resources.free)),
-                    new Stolik(table3, new Fiolka("Żelazo",
-                        Properties.Resources.blue, Properties.Resources.green, Properties.Resources.free)),
-                    new Stolik(table4, new Fiolka("Wodór",
-                        Properties.Resources.red, Properties.Resources.blue, Properties.Resources.free))
+                    new Stolik(table1, podpis1, new Fiolka("Węgiel",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    new Stolik(table2, podpis2, new Fiolka("Tlen",
+                        Properties.Resources.elipseGreen, Properties.Resources.elipseGreenChoose, Properties.Resources.free)),
+                    new Stolik(table3, podpis3, new Fiolka("Żelazo",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    new Stolik(table4, podpis4, new Fiolka("Wodór",
+                        Properties.Resources.red, Properties.Resources.redChoose, Properties.Resources.free)),
+                    new Stolik(table5, podpis5, new Fiolka("Siarka",
+                        Properties.Resources.elipsePurple, Properties.Resources.elipsePurpleChoose, Properties.Resources.free)),
+                    new Stolik(table6, podpis6, new Fiolka("",
+                        Properties.Resources.empty, Properties.Resources.empty, Properties.Resources.free))
                     },
-                    new bool[] { false, true, false, true }
+                    new bool[] { false, true, false, true, false, false }
                 ),
 
                 new Misja(
                     "Zbierz składniki do zrobienia soli, wzór NaCl",
-                    "Brawo, woda zrobiona, dostajesz 100 punktów",
+                    "Sól kuchenna, NaCl",
                     100,
                     new Stolik[] {
-                    new Stolik(table1, new Fiolka("Sód",
-                        Properties.Resources.blue, Properties.Resources.green, Properties.Resources.free)),
-                    new Stolik(table2, new Fiolka("Tlen",
-                        Properties.Resources.green, Properties.Resources.red, Properties.Resources.free)),
-                    new Stolik(table3, new Fiolka("Żelazo",
-                        Properties.Resources.blue, Properties.Resources.green, Properties.Resources.free)),
-                    new Stolik(table4, new Fiolka("Chlor",
-                        Properties.Resources.red, Properties.Resources.blue, Properties.Resources.free))
+                    new Stolik(table1, podpis1, new Fiolka("Sód",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    new Stolik(table2, podpis2, new Fiolka("Tlen",
+                        Properties.Resources.elipseGreen, Properties.Resources.elipseGreenChoose, Properties.Resources.free)),
+                    new Stolik(table3, podpis3, new Fiolka("Żelazo",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    new Stolik(table4, podpis4, new Fiolka("Chlor",
+                        Properties.Resources.red, Properties.Resources.redChoose, Properties.Resources.free)),
+                    new Stolik(table5, podpis5, new Fiolka("",
+                        Properties.Resources.empty, Properties.Resources.empty, Properties.Resources.free)),
+                    new Stolik(table6, podpis6, new Fiolka("Potas",
+                        Properties.Resources.elipseBlue, Properties.Resources.elipseBlueChoose, Properties.Resources.free))
                     },
-                    new bool[] { true, false, false, true }
+                    new bool[] { true, false, false, true, false, false }
                 )
             };
+            liczbaMisji = misje.Count();
 
-            obecnaMisja = misje[numerMisji];
-            label3.Text = obecnaMisja.opisMisji;
+            obecnaMisja = misje[0];
             stoliki = obecnaMisja.stoliki;
             obecnaMisja.zacznijMisje();
-            label5.Text = String.Format("Punkty {0}", punkty);
-            label6.Text = "";
 
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
+        private void odtwarzajWav(String co)
         {
+            SoundPlayer player = new SoundPlayer(Properties.Resources.cooo);
 
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-            if (label6.Text != "Dalej...")
-                return;
-
-            if (misje.Count() >= numerMisji + 2)
+            switch (co)
             {
-                label6.Text = "";
+                case "pling":
+                    player = new SoundPlayer(Properties.Resources.pling);
+                    break;
+                case "pung":
+                    player = new SoundPlayer(Properties.Resources.pung);
+                    break;
+                case "puup":
+                    player = new SoundPlayer(Properties.Resources.puup);
+                    break;
+                case "cooo":
+                    player = new SoundPlayer(Properties.Resources.cooo);
+                    break;
+                case "lot":
+                    player = new SoundPlayer(Properties.Resources.lot);
+                    break;
+                case "alleluja":
+                    player = new SoundPlayer(Properties.Resources.alleluja);
+                    break;
+            }
+
+            player.Play();
+        }
+
+        private void sprawdzCoPrzynioslem ()
+        {
+
+            // nic nie ma?
+            bool nic = true;
+            for (int st = 0; st < stoliki.Count(); st++)
+            {
+                if (stoliki[st].fiolka.jestZabrana)
+                    nic = false;
+            }
+            if (nic)
+            {
+                odtwarzajWav("cooo");
+                return;
+            }
+
+            bool ok = true;
+            for (int st = 0; st < stoliki.Count(); st++)
+            {
+                if (stoliki[st].fiolka.jestZabrana != obecnaMisja.maZebrac[st])
+                    ok = false;
+            }
+
+            if (ok)
+            {
+                obecnaMisja.koniec = true;
+                punkty += obecnaMisja.punkty;
+                labelMisje.Text = "Misje: " + (numerMisji+1);
+                labelSuma.Text = "Punkty: " + punkty;
+                odtwarzajWav("alleluja");
+
                 numerMisji++;
 
+                if (numerMisji == liczbaMisji)
+                {
+                    labelOpis.Text = "KONIEC GRY!";
+                    labelPunkty.Text = "";
+                    moznaChodzic = false;
+                    return;
+                }
+
                 obecnaMisja = misje[numerMisji];
-                label3.Text = obecnaMisja.opisMisji;
                 stoliki = obecnaMisja.stoliki;
                 obecnaMisja.zacznijMisje();
-                label5.Text = String.Format("Punkty {0}", punkty);
-                label6.Text = "";
+
+                labelPunkty.Text = String.Format("Do zdobycia: {0}", obecnaMisja.punkty);
+                labelOpis.Text = obecnaMisja.opisSkrocony;
+                labelZebrane.Text = "";
+
+
+                labelMisja.Text = "Misja " + (numerMisji + 1);
+                textboxOpisMisji.Text = obecnaMisja.opisMisji;
+                moznaChodzic = false;
+                panelMisji.Visible = true;
+
             }
+            else
+            {
+                odtwarzajWav("cooo");
+                obecnaMisja.punkty -= 10;
+                if (obecnaMisja.punkty < obecnaMisja.minPunkty)
+                    obecnaMisja.punkty = obecnaMisja.minPunkty; 
+                foreach (Stolik stolik in stoliki)
+                    stolik.resetujStolik();
+
+                labelPunkty.Text = String.Format("Do zdobycia: {0}", obecnaMisja.punkty);
+                labelOpis.Text = obecnaMisja.opisSkrocony;
+                labelZebrane.Text = "";
+
+
+                labelMisja.Text = "Błąd, zacznij od nowa";
+                moznaChodzic = false;
+                panelMisji.Visible = true;
+            }
+
         }
 
-        private void table2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
+            Close();
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panelMenu.Visible = false;
+
+            numerMisji = 0;
+            obecnaMisja = misje[numerMisji];
+            
+            labelMisja.Text = "Misja " + (numerMisji+1);
+            textboxOpisMisji.Text = obecnaMisja.opisMisji;
+
+            stoliki = obecnaMisja.stoliki;
+            obecnaMisja.zacznijMisje();
+
+            labelPunkty.Text = String.Format("Do zdobycia: {0}", obecnaMisja.punkty);
+            labelOpis.Text = obecnaMisja.opisSkrocony;
+            labelMisje.Text = "Misje: 0";
+            labelSuma.Text = "Punkty: 0";
+
+            panelMisji.Visible = true;
+        }
+
+        private void button3_MouseClick(object sender, MouseEventArgs e)
+        {
+            panelMisji.Visible = false;
+            moznaChodzic = true;
+            player.Visible = true;
         }
 
         private void MainTimeEvent(object sender, EventArgs e)
         {
+            if (!moznaChodzic) return;
+
+            czas++;
+            if (czas == 100)
+            {
+                if (obecnaMisja.punkty > obecnaMisja.minPunkty)
+                {
+                    obecnaMisja.punkty--;
+                    labelPunkty.Text = String.Format("Do zdobycia: {0}", obecnaMisja.punkty);
+                }
+
+                czas = 0;
+            }
+
             int newLeft, newTop;
             newLeft = player.Left;
             newTop = player.Top;
@@ -112,29 +246,24 @@ namespace Chemia_dla_opornych
 
             if (goLeft && player.Left > 0)
             {
-                //player.Left -= speed;
                 newLeft = player.Left - speed;
             }
             if (goRight && player.Left + player.Width < this.ClientSize.Width)
             {
-                //player.Left += speed;
                 newLeft = player.Left + speed;
             }
-            if (goUp && player.Top > 45)
+            if (goUp && player.Top > 180)
             {
-                //player.Top -= speed;
                 newTop = player.Top - speed;
             }
             if (goDown && player.Top + player.Height < this.ClientSize.Height)
             {
-                //player.Top += speed;
                 newTop = player.Top + speed;
             }
 
-
             foreach (Stolik stolik in stoliki)
             {
-                stolik.AktualizujPozycje(player);
+                stolik.coJestNaStoliku(player);
             }
 
             bool wlazlNaStolik = false;
@@ -148,94 +277,82 @@ namespace Chemia_dla_opornych
             {
                 player.Left = newLeft;
                 player.Top = newTop;
-
-                String opis = "";
-                foreach (Stolik stolik in stoliki)
-                {
-                    if (!stolik.fiolka.jestZabrana && stolik.czyJestBlisko(player))
-                    {
-                        opis = stolik.fiolka.substancja;
-                    }
-                }
-                label4.Text = opis;
-
             }
 
-            label1.Text = String.Format("l: {0}, t: {1} {2}", player.Left, player.Top, wlazlNaStolik);
+            labelPozycja.Text = String.Format("p:{0}-{1} n:{2}-{3} ?:{4}", player.Left, player.Top, newLeft, newTop, wlazlNaStolik);
 
         }
 
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
+            if (!moznaChodzic) return;
+
             if (e.KeyCode == Keys.Left)
             {
                 goLeft = true;
-                facing = "left";
                 player.Image = Properties.Resources.left;
             }
 
             if (e.KeyCode == Keys.Right)
             {
                 goRight = true;
-                facing = "right";
                 player.Image = Properties.Resources.right;
             }
 
             if (e.KeyCode == Keys.Up)
             {
                 goUp = true;
-                facing = "up";
                 player.Image = Properties.Resources.up;
             }
 
             if (e.KeyCode == Keys.Down)
             {
                 goDown = true;
-                facing = "down";
                 player.Image = Properties.Resources.down;
             }
             if (e.KeyCode == Keys.Space)
             {
-                // zabranie fiolki
                 foreach (Stolik stolik in stoliki)
                 {
-                    if (!stolik.fiolka.jestZabrana && stolik.czyJestBlisko(player))
+                    if (stolik.fiolka.substancja=="" && stolik.czyJestBlisko(player))
+                    {
+                        odtwarzajWav("pling");
+                    }
+                    else if (!stolik.fiolka.jestZabrana && stolik.czyJestBlisko(player))
                     {
                         stolik.fiolka.jestZabrana = true;
                         stolik.pictureBox.Image = stolik.fiolka.zabrana;
+                        stolik.podpis.Visible = false;
+                        odtwarzajWav("puup");
                     }
                     else if (stolik.fiolka.jestZabrana && stolik.czyJestBlisko(player))
                     {
                         stolik.fiolka.jestZabrana = false;
                         stolik.pictureBox.Image = stolik.fiolka.naStole;
+                        stolik.podpis.Visible = true;
+                        odtwarzajWav("pung");
                     }
 
                 }
-
-                // ukończenie poziomu
-                if (player.Top < 50)
+                String zebrane = "";
+                foreach (Stolik stolik in stoliki)
                 {
-                    bool ok = true;
-                    for (int st = 0; st < stoliki.Count(); st++)
-                    {
-                        if (stoliki[st].fiolka.jestZabrana != obecnaMisja.maZebrac[st])
-                            ok = false;
-                    }
+                    if (stolik.fiolka.jestZabrana)
+                        zebrane = zebrane + " " + stolik.fiolka.substancja;
+                }
+                if (zebrane.Length > 0)
+                {
+                    labelZebrane.Text = "Składniki: " + zebrane;
+                }
+                else
+                {
+                    labelZebrane.Text = "";
+                }
 
-                    if (ok)
-                    {
-                        label3.Text = obecnaMisja.napisKońcowy;
-                        punkty += obecnaMisja.punkty;
-                        label5.Text = String.Format("Punkty {0}", punkty);
-                        label6.Text = "Dalej...";
-                    }
-                    else
-                    {
-                        label3.Text = "ŹLE! Zacznij od nowa!";
-                        foreach (Stolik stolik in stoliki)
-                            stolik.resetujStolik();
-                    }
+                if (player.Top < 200 && player.Left + 75 > 300 && player.Left + 75 < 620)
+                {
+                    sprawdzCoPrzynioslem();
                 }
             }
 
@@ -243,6 +360,7 @@ namespace Chemia_dla_opornych
 
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
+            if (!moznaChodzic) return;
 
             if (e.KeyCode == Keys.Left)
             {
@@ -263,14 +381,6 @@ namespace Chemia_dla_opornych
             {
                 goDown = false;
             }
-            if (e.KeyCode == Keys.Space)
-            {
-                //table2.Image = Properties.Resources.red;
-            }
-
-            //((PictureBox)x).Image = Properties.Resources.zleft;
-
-
         }
     }
 }
