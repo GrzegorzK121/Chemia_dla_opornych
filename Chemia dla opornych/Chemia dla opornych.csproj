@@ -184,13 +184,13 @@
     <None Include="Resources\lab.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\down.png" />
+    <None Include="Resources\left.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\right.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\left.png" />
+    <None Include="Resources\down.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\up.png" />

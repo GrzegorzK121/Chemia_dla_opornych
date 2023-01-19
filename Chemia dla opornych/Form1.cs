@@ -14,7 +14,6 @@ namespace Chemia_dla_opornych
 {
     public partial class plansza : Form
     {
-
         bool goLeft, goRight, goUp, goDown;
         int speed = 7;
         int czas = 0;
@@ -74,7 +73,114 @@ namespace Chemia_dla_opornych
                         Properties.Resources.elipseBlue, Properties.Resources.elipseBlueChoose, Properties.Resources.free))
                     },
                     new bool[] { true, false, false, true, false, false }
-                )
+                ),
+
+                new Misja(
+                    "Zbierz składniki do zrobienia kwasu siarkowego, wzór H2SO4",
+                    "Kwas siarkowy, H2SO4",
+                    150,
+                    new Stolik[] {
+                    new Stolik(table1, podpis1, new Fiolka("Siarka",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    new Stolik(table2, podpis2, new Fiolka("Wodór",
+                        Properties.Resources.elipseGreen, Properties.Resources.elipseGreenChoose, Properties.Resources.free)),
+                    new Stolik(table3, podpis3, new Fiolka("Fosfor",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    new Stolik(table5, podpis5, new Fiolka("Węgiel",
+                        Properties.Resources.empty, Properties.Resources.empty, Properties.Resources.free)),
+                    new Stolik(table4, podpis4, new Fiolka("Tlen",
+                        Properties.Resources.red, Properties.Resources.redChoose, Properties.Resources.free)),
+                    new Stolik(table6, podpis6, new Fiolka("Bar",
+                        Properties.Resources.elipseBlue, Properties.Resources.elipseBlueChoose, Properties.Resources.free))
+                    },
+                    new bool[] { true, true, false, false, true, false }
+                ),
+
+                new Misja(
+                    "Zbierz składniki do zrobienia propanu, wzór C3H8",
+                    "Propan, C3H8",
+                    100,
+                    new Stolik[] {
+                    new Stolik(table6, podpis6, new Fiolka("Bar",
+                        Properties.Resources.elipseBlue, Properties.Resources.elipseBlueChoose, Properties.Resources.free)),
+                    new Stolik(table3, podpis3, new Fiolka("Fosfor",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    new Stolik(table5, podpis5, new Fiolka("Arsen",
+                        Properties.Resources.empty, Properties.Resources.empty, Properties.Resources.free)),
+                    new Stolik(table4, podpis4, new Fiolka("Tlen",
+                        Properties.Resources.red, Properties.Resources.redChoose, Properties.Resources.free)),
+                    new Stolik(table1, podpis1, new Fiolka("Węgiel",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    new Stolik(table2, podpis2, new Fiolka("Wodór",
+                        Properties.Resources.elipseGreen, Properties.Resources.elipseGreenChoose, Properties.Resources.free)),
+                    },
+                    new bool[] { false, false, false, false, true, true }
+                ),
+
+
+                new Misja(
+                    "Zbierz składniki do zrobienia kolejnej siarczku sodu, wzór Na2S",
+                    "Siarczek sodu, Na2S",
+                    100,
+                    new Stolik[] {
+                    new Stolik(table1, podpis1, new Fiolka("Potas",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    new Stolik(table2, podpis2, new Fiolka("Sód",
+                        Properties.Resources.elipseGreen, Properties.Resources.elipseGreenChoose, Properties.Resources.free)),
+                    new Stolik(table3, podpis3, new Fiolka("Fosfor",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    new Stolik(table4, podpis4, new Fiolka("Tlen",
+                        Properties.Resources.red, Properties.Resources.redChoose, Properties.Resources.free)),
+                    new Stolik(table5, podpis5, new Fiolka("Siarka",
+                        Properties.Resources.empty, Properties.Resources.empty, Properties.Resources.free)),
+                    new Stolik(table6, podpis6, new Fiolka("Bar",
+                        Properties.Resources.elipseBlue, Properties.Resources.elipseBlueChoose, Properties.Resources.free))
+                    },
+                    new bool[] { false, true, false, false, true, false }
+                ),
+
+                new Misja(
+                    "Zbierz składniki do zrobienia kolejnej nadmanganianu potasu, wzór KMnO4",
+                    "Nadmanganian potasu, KMnO4",
+                    150,
+                    new Stolik[] {
+                    new Stolik(table4, podpis4, new Fiolka("Tlen",
+                        Properties.Resources.red, Properties.Resources.redChoose, Properties.Resources.free)),
+                    new Stolik(table5, podpis5, new Fiolka("Siarka",
+                        Properties.Resources.empty, Properties.Resources.empty, Properties.Resources.free)),
+                    new Stolik(table6, podpis6, new Fiolka("Mangan",
+                        Properties.Resources.elipseBlue, Properties.Resources.elipseBlueChoose, Properties.Resources.free)),
+                    new Stolik(table1, podpis1, new Fiolka("Krzem",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    new Stolik(table2, podpis2, new Fiolka("Sód",
+                        Properties.Resources.elipseGreen, Properties.Resources.elipseGreenChoose, Properties.Resources.free)),
+                    new Stolik(table3, podpis3, new Fiolka("Potas",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    },
+                    new bool[] { true, false, true, false, false, true }
+                ),
+
+                new Misja(
+                    "Zbierz składniki do zrobienia kefeiny, wzór C8H10N4O2",
+                    "Kofeina, C8H10N4O2",
+                    200,
+                    new Stolik[] {
+                    new Stolik(table5, podpis5, new Fiolka("Węgiel",
+                        Properties.Resources.empty, Properties.Resources.empty, Properties.Resources.free)),
+                    new Stolik(table3, podpis3, new Fiolka("Fosfor",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    new Stolik(table4, podpis4, new Fiolka("Tlen",
+                        Properties.Resources.red, Properties.Resources.redChoose, Properties.Resources.free)),
+                    new Stolik(table1, podpis1, new Fiolka("Arsen",
+                        Properties.Resources.blue, Properties.Resources.blueChoose, Properties.Resources.free)),
+                    new Stolik(table6, podpis6, new Fiolka("Azot",
+                        Properties.Resources.elipseBlue, Properties.Resources.elipseBlueChoose, Properties.Resources.free)),
+                    new Stolik(table2, podpis2, new Fiolka("Wodór",
+                        Properties.Resources.elipseGreen, Properties.Resources.elipseGreenChoose, Properties.Resources.free)),
+                    },
+                    new bool[] { true, false, true, false, true, true }
+                ),
+
             };
             liczbaMisji = misje.Count();
 
@@ -167,6 +273,7 @@ namespace Chemia_dla_opornych
                 textboxOpisMisji.Text = obecnaMisja.opisMisji;
                 moznaChodzic = false;
                 panelMisji.Visible = true;
+                button3.Focus();
 
             }
             else
@@ -186,6 +293,7 @@ namespace Chemia_dla_opornych
                 labelMisja.Text = "Błąd, zacznij od nowa";
                 moznaChodzic = false;
                 panelMisji.Visible = true;
+                button3.Focus();
             }
 
         }
@@ -214,9 +322,14 @@ namespace Chemia_dla_opornych
             labelSuma.Text = "Punkty: 0";
 
             panelMisji.Visible = true;
+            button3.Focus();
         }
 
         private void button3_MouseClick(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void button3_Click(object sender, EventArgs e)
         {
             panelMisji.Visible = false;
             moznaChodzic = true;
@@ -313,6 +426,7 @@ namespace Chemia_dla_opornych
             }
             if (e.KeyCode == Keys.Space)
             {
+                e.Handled = true;
                 foreach (Stolik stolik in stoliki)
                 {
                     if (stolik.fiolka.substancja=="" && stolik.czyJestBlisko(player))

@@ -36,6 +36,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.panelGorny = new System.Windows.Forms.Panel();
+            this.labelZebrane = new System.Windows.Forms.Label();
             this.labelSuma = new System.Windows.Forms.Label();
             this.labelMisje = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.textboxOpisMisji = new System.Windows.Forms.TextBox();
             this.labelMisja = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.player = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.table6 = new System.Windows.Forms.PictureBox();
             this.table5 = new System.Windows.Forms.PictureBox();
@@ -60,11 +60,10 @@
             this.table3 = new System.Windows.Forms.PictureBox();
             this.table2 = new System.Windows.Forms.PictureBox();
             this.table1 = new System.Windows.Forms.PictureBox();
-            this.labelZebrane = new System.Windows.Forms.Label();
+            this.player = new System.Windows.Forms.PictureBox();
             this.panelMenu.SuspendLayout();
             this.panelGorny.SuspendLayout();
             this.panelMisji.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table5)).BeginInit();
@@ -72,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.table3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             this.SuspendLayout();
             // 
             // GameTimer
@@ -86,7 +86,7 @@
             this.panelMenu.Controls.Add(this.textBox1);
             this.panelMenu.Controls.Add(this.label7);
             this.panelMenu.Controls.Add(this.button2);
-            this.panelMenu.Location = new System.Drawing.Point(260, 420);
+            this.panelMenu.Location = new System.Drawing.Point(256, 408);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(468, 405);
             this.panelMenu.TabIndex = 14;
@@ -142,6 +142,16 @@
             this.panelGorny.Size = new System.Drawing.Size(984, 133);
             this.panelGorny.TabIndex = 15;
             // 
+            // labelZebrane
+            // 
+            this.labelZebrane.AutoSize = true;
+            this.labelZebrane.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelZebrane.Location = new System.Drawing.Point(12, 89);
+            this.labelZebrane.Name = "labelZebrane";
+            this.labelZebrane.Size = new System.Drawing.Size(21, 31);
+            this.labelZebrane.TabIndex = 27;
+            this.labelZebrane.Text = " ";
+            // 
             // labelSuma
             // 
             this.labelSuma.AutoSize = true;
@@ -169,6 +179,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(41, 62);
             this.button1.TabIndex = 18;
+            this.button1.TabStop = false;
             this.button1.Text = "X";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -179,9 +190,9 @@
             this.labelPunkty.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelPunkty.Location = new System.Drawing.Point(12, 49);
             this.labelPunkty.Name = "labelPunkty";
-            this.labelPunkty.Size = new System.Drawing.Size(44, 31);
+            this.labelPunkty.Size = new System.Drawing.Size(21, 31);
             this.labelPunkty.TabIndex = 16;
-            this.labelPunkty.Text = "??";
+            this.labelPunkty.Text = " ";
             // 
             // labelOpis
             // 
@@ -189,9 +200,9 @@
             this.labelOpis.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelOpis.Location = new System.Drawing.Point(12, 9);
             this.labelOpis.Name = "labelOpis";
-            this.labelOpis.Size = new System.Drawing.Size(44, 31);
+            this.labelOpis.Size = new System.Drawing.Size(21, 31);
             this.labelOpis.TabIndex = 14;
-            this.labelOpis.Text = "??";
+            this.labelOpis.Text = " ";
             // 
             // labelPozycja
             // 
@@ -202,35 +213,36 @@
             this.labelPozycja.Size = new System.Drawing.Size(44, 31);
             this.labelPozycja.TabIndex = 12;
             this.labelPozycja.Text = "??";
+            this.labelPozycja.Visible = false;
             // 
             // podpis1
             // 
             this.podpis1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.podpis1.Location = new System.Drawing.Point(69, 550);
+            this.podpis1.Location = new System.Drawing.Point(14, 538);
             this.podpis1.Name = "podpis1";
-            this.podpis1.Size = new System.Drawing.Size(150, 31);
+            this.podpis1.Size = new System.Drawing.Size(240, 70);
             this.podpis1.TabIndex = 17;
-            this.podpis1.Text = "??";
+            this.podpis1.Text = "Kwas siarkowodorowy";
             this.podpis1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.podpis1.Visible = false;
             // 
             // podpis2
             // 
             this.podpis2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.podpis2.Location = new System.Drawing.Point(746, 550);
+            this.podpis2.Location = new System.Drawing.Point(730, 538);
             this.podpis2.Name = "podpis2";
-            this.podpis2.Size = new System.Drawing.Size(150, 31);
+            this.podpis2.Size = new System.Drawing.Size(240, 70);
             this.podpis2.TabIndex = 18;
-            this.podpis2.Text = "??";
+            this.podpis2.Text = "Wodorotlenek Sodu";
             this.podpis2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.podpis2.Visible = false;
             // 
             // podpis3
             // 
             this.podpis3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.podpis3.Location = new System.Drawing.Point(69, 838);
+            this.podpis3.Location = new System.Drawing.Point(14, 825);
             this.podpis3.Name = "podpis3";
-            this.podpis3.Size = new System.Drawing.Size(150, 31);
+            this.podpis3.Size = new System.Drawing.Size(240, 70);
             this.podpis3.TabIndex = 19;
             this.podpis3.Text = "??";
             this.podpis3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -239,9 +251,9 @@
             // podpis5
             // 
             this.podpis5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.podpis5.Location = new System.Drawing.Point(69, 1122);
+            this.podpis5.Location = new System.Drawing.Point(14, 1110);
             this.podpis5.Name = "podpis5";
-            this.podpis5.Size = new System.Drawing.Size(150, 31);
+            this.podpis5.Size = new System.Drawing.Size(240, 70);
             this.podpis5.TabIndex = 20;
             this.podpis5.Text = "??";
             this.podpis5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -250,9 +262,9 @@
             // podpis4
             // 
             this.podpis4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.podpis4.Location = new System.Drawing.Point(746, 838);
+            this.podpis4.Location = new System.Drawing.Point(730, 826);
             this.podpis4.Name = "podpis4";
-            this.podpis4.Size = new System.Drawing.Size(150, 31);
+            this.podpis4.Size = new System.Drawing.Size(240, 70);
             this.podpis4.TabIndex = 21;
             this.podpis4.Text = "??";
             this.podpis4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -261,11 +273,11 @@
             // podpis6
             // 
             this.podpis6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.podpis6.Location = new System.Drawing.Point(746, 1122);
+            this.podpis6.Location = new System.Drawing.Point(730, 1110);
             this.podpis6.Name = "podpis6";
-            this.podpis6.Size = new System.Drawing.Size(150, 31);
+            this.podpis6.Size = new System.Drawing.Size(240, 70);
             this.podpis6.TabIndex = 22;
-            this.podpis6.Text = "??";
+            this.podpis6.Text = "Wodorotlenek Sodu";
             this.podpis6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.podpis6.Visible = false;
             // 
@@ -275,7 +287,7 @@
             this.panelMisji.Controls.Add(this.textboxOpisMisji);
             this.panelMisji.Controls.Add(this.labelMisja);
             this.panelMisji.Controls.Add(this.button3);
-            this.panelMisji.Location = new System.Drawing.Point(260, 420);
+            this.panelMisji.Location = new System.Drawing.Point(256, 408);
             this.panelMisji.Name = "panelMisji";
             this.panelMisji.Size = new System.Drawing.Size(468, 405);
             this.panelMisji.TabIndex = 25;
@@ -314,18 +326,7 @@
             this.button3.TabIndex = 20;
             this.button3.Text = "Start";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button3_MouseClick);
-            // 
-            // player
-            // 
-            this.player.Image = global::Chemia_dla_opornych.Properties.Resources.up;
-            this.player.Location = new System.Drawing.Point(397, 612);
-            this.player.Name = "player";
-            this.player.Size = new System.Drawing.Size(150, 150);
-            this.player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.player.TabIndex = 26;
-            this.player.TabStop = false;
-            this.player.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // pictureBox1
             // 
@@ -340,7 +341,7 @@
             // table6
             // 
             this.table6.Image = ((System.Drawing.Image)(resources.GetObject("table6.Image")));
-            this.table6.Location = new System.Drawing.Point(746, 917);
+            this.table6.Location = new System.Drawing.Point(742, 905);
             this.table6.Name = "table6";
             this.table6.Size = new System.Drawing.Size(150, 202);
             this.table6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -351,7 +352,7 @@
             // table5
             // 
             this.table5.Image = ((System.Drawing.Image)(resources.GetObject("table5.Image")));
-            this.table5.Location = new System.Drawing.Point(69, 917);
+            this.table5.Location = new System.Drawing.Point(65, 905);
             this.table5.Name = "table5";
             this.table5.Size = new System.Drawing.Size(150, 202);
             this.table5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -362,7 +363,7 @@
             // table4
             // 
             this.table4.Image = ((System.Drawing.Image)(resources.GetObject("table4.Image")));
-            this.table4.Location = new System.Drawing.Point(746, 633);
+            this.table4.Location = new System.Drawing.Point(742, 621);
             this.table4.Name = "table4";
             this.table4.Size = new System.Drawing.Size(150, 202);
             this.table4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -373,7 +374,7 @@
             // table3
             // 
             this.table3.Image = ((System.Drawing.Image)(resources.GetObject("table3.Image")));
-            this.table3.Location = new System.Drawing.Point(69, 633);
+            this.table3.Location = new System.Drawing.Point(65, 621);
             this.table3.Name = "table3";
             this.table3.Size = new System.Drawing.Size(150, 202);
             this.table3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -384,7 +385,7 @@
             // table2
             // 
             this.table2.Image = ((System.Drawing.Image)(resources.GetObject("table2.Image")));
-            this.table2.Location = new System.Drawing.Point(746, 345);
+            this.table2.Location = new System.Drawing.Point(742, 333);
             this.table2.Name = "table2";
             this.table2.Size = new System.Drawing.Size(150, 202);
             this.table2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -395,7 +396,7 @@
             // table1
             // 
             this.table1.Image = ((System.Drawing.Image)(resources.GetObject("table1.Image")));
-            this.table1.Location = new System.Drawing.Point(69, 345);
+            this.table1.Location = new System.Drawing.Point(65, 333);
             this.table1.Name = "table1";
             this.table1.Size = new System.Drawing.Size(150, 202);
             this.table1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -403,15 +404,16 @@
             this.table1.TabStop = false;
             this.table1.Visible = false;
             // 
-            // labelZebrane
+            // player
             // 
-            this.labelZebrane.AutoSize = true;
-            this.labelZebrane.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelZebrane.Location = new System.Drawing.Point(12, 89);
-            this.labelZebrane.Name = "labelZebrane";
-            this.labelZebrane.Size = new System.Drawing.Size(44, 31);
-            this.labelZebrane.TabIndex = 27;
-            this.labelZebrane.Text = "??";
+            this.player.Image = global::Chemia_dla_opornych.Properties.Resources.up;
+            this.player.Location = new System.Drawing.Point(395, 199);
+            this.player.Name = "player";
+            this.player.Size = new System.Drawing.Size(150, 150);
+            this.player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.player.TabIndex = 28;
+            this.player.TabStop = false;
+            this.player.Visible = false;
             // 
             // plansza
             // 
@@ -450,7 +452,6 @@
             this.panelGorny.PerformLayout();
             this.panelMisji.ResumeLayout(false);
             this.panelMisji.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table5)).EndInit();
@@ -458,6 +459,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.table3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -491,10 +493,10 @@
         private System.Windows.Forms.TextBox textboxOpisMisji;
         private System.Windows.Forms.Label labelMisja;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.PictureBox player;
         private System.Windows.Forms.Label labelSuma;
         private System.Windows.Forms.Label labelMisje;
         private System.Windows.Forms.Label labelZebrane;
+        private System.Windows.Forms.PictureBox player;
     }
 }
 
