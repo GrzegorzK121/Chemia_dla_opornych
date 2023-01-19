@@ -12,22 +12,65 @@ using System.Media;
 
 namespace Chemia_dla_opornych
 {
+    /// <summary>
+    /// Klasa reprezentująca okno programu
+    /// </summary>
     public partial class plansza : Form
     {
         bool goLeft, goRight, goUp, goDown;
+
+        /// <summary>
+        /// Szybkość poruszania się gracza, dobrana eksperymentalnie:
+        /// 7 pikseli co 10 ms
+        /// </summary>
         int speed = 7;
+
+        /// <summary>
+        /// Licznik czasu, używany do odejmowania punktów za misję
+        /// </summary>
         int czas = 0;
 
+        /// <summary>
+        /// Tablica zawierająca dane misji, które ma wykonać gracz
+        /// </summary>
         Misja[] misje;
 
+        /// <summary>
+        /// Decyduje o tym czy gracz może poruszać się w polu gry
+        /// </summary>
         bool moznaChodzic = false;
-        int numerMisji = 0;
-        int punkty = 0;
-        int liczbaMisji;
-        Misja obecnaMisja;
-        Stolik[] stoliki;
-        
 
+        /// <summary>
+        /// Numer aktualnie wykonywanej misji
+        /// </summary>
+        int numerMisji = 0;
+
+        /// <summary>
+        /// Liczba punktów zdobytych przez gracza
+        /// </summary>
+        int punkty = 0;
+
+        /// <summary>
+        /// Liczba misji do wykonania
+        /// </summary>
+        int liczbaMisji;
+
+        /// <summary>
+        /// Numer aktualnie wykonywanej misji
+        /// </summary>
+        Misja obecnaMisja;
+
+        /// <summary>
+        /// Tablica obiektów klasy Stolik, reprezentujących stoliki 
+        /// z substancjami chemicznymi, które zbiera gracz
+        /// </summary>
+        Stolik[] stoliki;
+
+        /// <summary>
+        /// Konstruktor tworzy tablicę misji oraz nadaje wartość początkową 
+        /// potrzebnych zmiennych, jak liczba misji i numer misji.
+        /// Na koniec wyświetla panel menu
+        /// </summary>
         public plansza()
         {
             InitializeComponent();
@@ -188,8 +231,15 @@ namespace Chemia_dla_opornych
             stoliki = obecnaMisja.stoliki;
             obecnaMisja.zacznijMisje();
 
+            panelMenu.Visible = true;
+
         }
 
+        /// <summary>
+        /// Odtwarza dźwięk na podstawie jego nazwy.
+        /// Wykorzystuje klasę SoundPlayer
+        /// </summary>
+        /// <param name="co">Nazwa dźwięku, który ma być odtworzony</param>
         private void odtwarzajWav(String co)
         {
             SoundPlayer player = new SoundPlayer(Properties.Resources.cooo);
@@ -219,6 +269,18 @@ namespace Chemia_dla_opornych
             player.Play();
         }
 
+        /// <summary>
+        /// Sprawdza, co gracz zebrał ze stolików i decyduje o zakończeniu misji.
+        /// Jeżeli gracz nic nie zebrał, to tylko odtwarza dźwięk "cooo".
+        /// Jeżeli gracz zebrał niewłaściwe substancje, to odtwarza dźwięk "cooo",
+        /// odbiera 10 punktów, resetuje stoliki, wstrzymuje ruch gracza i wyświetla 
+        /// komunikat o błędzie. Kiedy gracz kliknie "OK", zaczyna misję od nowa.
+        /// Jeżeli gracz zebrał właściwe substancje, dodaje punkty za misję,
+        /// wyświetla informacje o liczbie zdobytych punktów i liczbie skończonych misji.
+        /// Następnie wczytuje nową misję, wyświetla liczbę punktów do zdobycia
+        /// oraz opis misji i wstrzymuje ruch gracza. 
+        /// Jeżeli ukończona misja jest ostatnią misją, to wyświetla napis "Koniec gry"
+        /// </summary>
         private void sprawdzCoPrzynioslem ()
         {
 
@@ -298,11 +360,24 @@ namespace Chemia_dla_opornych
 
         }
 
+        /// <summary>
+        /// Funkcja obsługi zdarzenia - kliknięcia w przycisk "X". 
+        /// Zamyka program.
+        /// </summary>
+        /// <param name="sender">Parametr dodany przez Visual Studio</param>
+        /// <param name="e">Parametr dodany przez Visual Studio</param>
         private void button1_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Funkcja obsługi zdarzenia - kliknięcia w przycisk "Start" panelu powitalnego. 
+        /// Wczytuje i wyświetla dane pierwszej misji, wyświetla stoliki przy pomocy funkcji zacznijMisje(),
+        /// następnie wyświetla panel opisu misji
+        /// </summary>
+        /// <param name="sender">Parametr dodany przez Visual Studio</param>
+        /// <param name="e">Parametr dodany przez Visual Studio</param>
         private void button2_Click(object sender, EventArgs e)
         {
             panelMenu.Visible = false;
@@ -325,10 +400,12 @@ namespace Chemia_dla_opornych
             button3.Focus();
         }
 
-        private void button3_MouseClick(object sender, MouseEventArgs e)
-        {
-        }
-
+        /// <summary>
+        /// Funkcja obsługi zdarzenia - kliknięcia w przycisk "Start" panelu opisu misji. 
+        /// Ukrywa panel opisu misji, wyświetla gracza i włącza ruch gracza
+        /// </summary>
+        /// <param name="sender">Parametr dodany przez Visual Studio</param>
+        /// <param name="e">Parametr dodany przez Visual Studio</param>
         private void button3_Click(object sender, EventArgs e)
         {
             panelMisji.Visible = false;
@@ -336,6 +413,19 @@ namespace Chemia_dla_opornych
             player.Visible = true;
         }
 
+        /// <summary>
+        /// Funkcja obsługi zdarzenia Tick timera gry, wykonywana co 10 ms.
+        /// Jeżeli ruch gracza jest wyłączony zmienną moznaChodzic, to nic nie robi
+        /// Co 100 zdarzeń, czyli co 1 sekundę, odbiera 1 punkt do zdobycia za misję.
+        /// Następnie oblicza nową pozycję gracza, co wynika z tego czy wciśnięte są
+        /// klawisze strzałek. Dla każdego stolika wyświetla lub ukrywa informację 
+        /// o tym co jest na stoliku za pomocą funkcji coJestNaStoliku().
+        /// Następnie sprawdza dla każdego stolika, czy gracz nie wchodzi na stolik
+        /// przy pomocy funkcji czyWlazlNaStolik() i jeżeli nie, to przesuwa gracza 
+        /// na planszy
+        /// </summary>
+        /// <param name="sender">Parametr dodany przez Visual Studio</param>
+        /// <param name="e">Parametr dodany przez Visual Studio</param>
         private void MainTimeEvent(object sender, EventArgs e)
         {
             if (!moznaChodzic) return;
@@ -396,7 +486,21 @@ namespace Chemia_dla_opornych
 
         }
 
-
+        /// <summary>
+        /// Funkcja obsługi zdarzenia wciśnięcia klawisza.
+        /// Jeżeli ruch gracza jest wyłączony zmienną moznaChodzic, to nic nie robi.
+        /// Jeżeli zostanie naciśnięty klawisz strzałki, to zapisuje to w zmiennej 
+        /// i wtedy podczas zdarzenia Tick timera gracz się porusza.
+        /// Jeżeli wciśnięta jest spacja, to wykonuje kilka czynności.
+        /// Najpierw sprawdza dla każdego stolika czy fiolka ze stolika jest zabrana
+        /// i czy gracz jest w pobliżu, funkcją czyJestBlisko. Jeżeli tak, 
+        /// to gracz zabiera albo odkłada fiolkę. Dodatkowo jest odtwarzany dźwięk.
+        /// Jeżeli fiolka na stoliku jest pusta, to jest odtwarzany inny dźwięk.
+        /// Następnie wyświetla informaję o tym jakie substancje gracz zebrał.
+        /// Jeżeli gracz jest u góry planszy, to wywołuje funkcję sprawdzCoPrzynioslem()        
+        /// </summary>
+        /// <param name="sender">Parametr dodany przez Visual Studio</param>
+        /// <param name="e">Parametr dodany przez Visual Studio</param>
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
             if (!moznaChodzic) return;
@@ -472,6 +576,14 @@ namespace Chemia_dla_opornych
 
         }
 
+        /// <summary>
+        /// Funkcja obsługi zdarzenia zwolnienia klawisza.
+        /// Jeżeli ruch gracza jest wyłączony zmienną moznaChodzic, to nic nie robi.
+        /// Jeżeli zostanie zwolniony klawisz strzałki, to zapisuje to w zmiennej 
+        /// i wtedy podczas zdarzenia Tick timera gracz się nie porusza.
+        /// </summary>
+        /// <param name="sender">Parametr dodany przez Visual Studio</param>
+        /// <param name="e">Parametr dodany przez Visual Studio</param>
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
             if (!moznaChodzic) return;
